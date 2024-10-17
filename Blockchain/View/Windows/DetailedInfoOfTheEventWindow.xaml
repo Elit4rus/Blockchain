@@ -1,0 +1,96 @@
+﻿<Window x:Class="Blockchain.View.Windows.DetailedInfoOfTheEventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Blockchain.View.Windows"
+        mc:Ignorable="d"
+        Title="DetailedInfoOfTheEventWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Название мероприятия"
+               HorizontalAlignment="Center"
+               FontSize="32"
+               FontWeight="Bold"/>
+
+        <!-- Grid нижней части-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Левая часть-->
+            <Grid Margin="5" >
+                <Border BorderBrush="Black" BorderThickness="3"/>
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Лого -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Width="80" 
+                               HorizontalAlignment="Left" 
+                               Fill="#FFFFD892"/>
+
+                        <TextBlock Text="Logo"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+
+                    </Grid>
+
+                    <!--Эксперимент с закруглением-->
+                    <Border Grid.Row="2"
+                        CornerRadius="10"
+                        BorderThickness="1">
+                        <Button Name="DateBtn"
+                            Grid.Row="2" 
+                            Content="Дата" 
+                            Background="Transparent"
+                            BorderBrush="#FFD4B573"
+                            />
+                    </Border>
+
+
+                    <Button Name="TownBtn"  
+                        Grid.Row="4" 
+                        Content="Город" 
+                        Background="Transparent" 
+                        BorderBrush="#FFD4B573"/>
+
+                    <Button Name="OrganizatorBtn" 
+                        Grid.Row="6" 
+                        Content="Организатор" 
+                        Background="Transparent" 
+                         BorderBrush="#FFD4B573"/>
+                </Grid>
+            </Grid>
+
+            <!--Правая часть-->
+            <Grid Margin="5"
+              Grid.Column="2">
+                <Border BorderBrush="Black" BorderThickness="3"/>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
