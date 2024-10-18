@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blockchain.View.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace Blockchain
         public MainWindow()
         {
             InitializeComponent();
+            EventsLv.ItemsSource = App.context.Activity.ToList();
+        }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
         }
     }
 }

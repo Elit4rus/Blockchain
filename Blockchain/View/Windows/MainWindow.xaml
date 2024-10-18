@@ -1,0 +1,55 @@
+﻿<Window x:Class="Blockchain.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Blockchain"
+        mc:Ignorable="d"
+        Title="Главное окно системы" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <!-- Фильтрация -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Name="DirectionsCmb" DisplayMemberPath="Name" SelectedValuePath=""/>
+            <DatePicker Grid.Column="2"/> 
+            <Button  Name="LoginBtn" Click="LoginBtn_Click"  Grid.Column="5" Content="Войти"/>
+        </Grid>
+
+        <!-- Таблица мероприятий -->
+        <ListView Grid.Row="3" Name="EventsLv">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Лого" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding EventID}" Width="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Название"
+                                DisplayMemberBinding="{Binding Event.Title}"/>
+                    <GridViewColumn Header="Направление"
+                                DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Дата"
+                                DisplayMemberBinding="{Binding Date, StringFormat = dd.MM.yyy}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
