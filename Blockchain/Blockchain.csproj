@@ -66,6 +66,7 @@
     </ApplicationDefinition>
     <Compile Include="AppData\AuthorizationHelper.cs" />
     <Compile Include="AppData\BlockSystemHelper.cs" />
+    <Compile Include="AppData\RegistrationHelper.cs" />
     <Compile Include="Model\Activity.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

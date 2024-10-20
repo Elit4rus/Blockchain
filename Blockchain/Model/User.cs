@@ -60,5 +60,22 @@ namespace Blockchain.Model
         public virtual Gender Gender { get; set; }
         public virtual ModeratorEvent ModeratorEvent { get; set; }
         public virtual Role Role { get; set; }
+
+        public User(string surname, string name, string patronymic, string email, DateTime? dateOfBirth, int? countryID, string phone, string password, string photo, int? genderID, int roleID, int? directionID, int? moderatorEventID)
+        {
+            Surname = surname;
+            Name = name;
+            Patronymic = patronymic;
+            Email = email;
+            DateOfBirth = dateOfBirth;
+            CountryID = countryID;
+            Phone = phone;
+            Password = password;
+            Photo = photo;
+            GenderID = genderID;
+            RoleID = roleID;
+            DirectionID = directionID;
+            ModeratorEventID = moderatorEventID;
+        }
     }
 }

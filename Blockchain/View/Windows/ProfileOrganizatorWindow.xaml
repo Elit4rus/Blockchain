@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blockchain.View.Windows"
         mc:Ignorable="d"
-        Title="Профиль" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Профиль" Height="450" Width="950" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -21,15 +21,15 @@
         <!-- Grid нижней части-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.8*" />
                 <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
             <!--Левая часть-->
-            <Grid Margin="10">
+            <Grid Margin="15 10 10 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
@@ -47,61 +47,72 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="ФИО:"
+                <TextBlock Text="Фамилия:"
                        HorizontalAlignment="Right"/>
-                <TextBox Name="NameTb"
-                     Grid.Column="2" 
-                     BorderThickness="0"/>
+                <TextBox Name="SurnameTb"
+                     Grid.Column="2"/>
 
-                <TextBlock Text="Пол:"
+                <TextBlock Text="Имя:"
                        Grid.Row="2"
                        HorizontalAlignment="Right"/>
-                <TextBox Name="GenderTb" 
-                     Grid.Column="2"
-                     Grid.Row="2"/>
+                <TextBox Name="NameTb" 
+                         Grid.Column="2"
+                         Grid.Row="2"/>
+
+                <TextBlock Text="Отчество:"
+                           Grid.Row="4"
+                           HorizontalAlignment="Right"/>
+                <TextBox Name="PatronymicTb" 
+                         Grid.Column="2"
+                         Grid.Row="4"/>
+
+                <TextBlock Text="Пол:"
+                           Grid.Row="6"
+                           HorizontalAlignment="Right"/>
+                <ComboBox Name="GenderCmb" 
+                          Grid.Column="2"
+                          Grid.Row="6"/>
 
                 <TextBlock Text="Дата рождения:"
-                       Grid.Row="4"
-                       HorizontalAlignment="Right"/>
-                <TextBox Name="DateOfBirthTb" 
-                     Grid.Column="2"
-                     Grid.Row="4"/>
-
-                <TextBlock Text="Id Number:"
-                       Grid.Row="6"
-                       HorizontalAlignment="Right"/>
-                <TextBox Name="IdTb" 
-                     Grid.Column="2"
-                     Grid.Row="6"/>
-
-                <TextBlock Text="Страна:"
                        Grid.Row="8"
                        HorizontalAlignment="Right"/>
-                <TextBox Name="TownTb" 
-                     Grid.Column="2"
-                     Grid.Row="8"/>
+                <DatePicker Name="DateOfBirthDp" 
+                            Grid.Row="8"
+                            Grid.Column="2"
+                            Foreground="Black"
+                            FontSize="18"/>
+
+                <TextBlock Text="Страна:"
+                           Grid.Row="10"
+                           HorizontalAlignment="Right"/>
+                <ComboBox Name="CountryCmb" 
+                          Grid.Column="2"
+                          Grid.Row="10"/>
 
                 <TextBlock Text="Телефон:"
-                       Grid.Row="10"
-                       HorizontalAlignment="Right"/>
+                           Grid.Row="12"
+                           HorizontalAlignment="Right"/>
                 <TextBox Name="PhoneTb" 
-                     Grid.Column="2" 
-                     Grid.Row="10"/>
+                         Grid.Column="2" 
+                         Grid.Row="12"/>
 
                 <TextBlock Text="Email:"
-                       Grid.Row="12"
-                       HorizontalAlignment="Right"/>
+                           Grid.Row="14"
+                           HorizontalAlignment="Right"/>
                 <TextBox Name="EmailTb" 
-                     Grid.Column="2"
-                     Grid.Row="12"/>
+                         Grid.Column="2"
+                         Grid.Row="14"
+                         FontSize="18"/>
             </Grid>
 
             <!--Правая часть-->
             <Grid Grid.Column="2"
-              Margin="5">
+              Margin="5 5 20 5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="10" />
@@ -124,14 +135,16 @@
                    Grid.Column="2"  
                    Margin="15"/>
 
-                <CheckBox Grid.Row="1"
-                      Grid.ColumnSpan="3"
-                      Content="Смена пароля"
-                      HorizontalAlignment="Center"
-                      Margin="130 0 0 0 "/>
+                <CheckBox x:Name="ChangePasswordCb" 
+                          Grid.Row="1"
+                          Grid.Column="2"
+                          Content="Смена пароля"
+                          HorizontalAlignment="Left"
+                          VerticalContentAlignment="Center"
+                          VerticalAlignment="Bottom"/>
 
                 <TextBlock Grid.Row="3"
-                       Text="Пароль :"
+                       Text="Новый пароль :"
                        HorizontalAlignment="Right"/>
                 <!--НУЖНО СДЕЛАТЬ ПОДСКАЗКУ ВНУТРИ TB-->
                 <TextBox Name="PasswordTb"
@@ -149,10 +162,10 @@
 
 
                 <CheckBox Grid.Row="6"
-                      Grid.ColumnSpan="3"
+                      Grid.Column="3"
                       Content="Видимый пароль"
-                      HorizontalAlignment="Center"
-                      Margin="170 0 0 0 "/>
+                      HorizontalAlignment="Left"
+                      VerticalContentAlignment="Center"/>
 
                 <Grid Grid.Row="8"
                   
@@ -163,10 +176,16 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Content="Ок"/>
+                    <Button Name="SaveBtn" 
+                            Content="Сохранить" 
+                            Width="180"
+                            Click="SaveBtn_Click"/>
 
-                    <Button Grid.Column="2"
-                        Content="Отмена"/>
+                    <Button Name="BackBtn" 
+                            Grid.Column="2"
+                            Content="Отмена"
+                            Width="180"
+                            Click="BackBtn_Click"/>
                 </Grid>
             </Grid>
         </Grid>

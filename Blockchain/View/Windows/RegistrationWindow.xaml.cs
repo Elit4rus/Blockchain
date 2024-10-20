@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Blockchain.AppData;
+using Blockchain.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +25,14 @@ namespace Blockchain.View.Windows
         {
             InitializeComponent();
             RoleCmb.SelectedValuePath = "ID";
-            RoleCmb.DisplayMemberPath = "Name";
+            RoleCmb.DisplayMemberPath = "Title";
             RoleCmb.ItemsSource = App.context.Role.ToList();
         }
 
         private void RoleCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int SelectedRole = Convert.ToInt32(RoleCmb.SelectedValue);
-            RoleCmb.ItemsSource = App.context.Role.Where(r => r.ID == SelectedRole);
+            RoleCmb.ItemsSource = App.context.Role.Where(r => r.ID == SelectedRole).ToList();
         }
 
         private void LoginHl_Click(object sender, RoutedEventArgs e)
@@ -38,6 +40,39 @@ namespace Blockchain.View.Windows
             AuthorizationWindow authorizationWindow = new AuthorizationWindow();
             authorizationWindow.Show();
             Close();
+        }
+
+        private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Добавление нового пользователя
+                // 1) Создаём объект
+                RegistrationHelper.newUser = new User()
+                {
+                    Email = EmailTb.Text,
+                    Password = PasswordPb.Password,
+                    RoleID = Convert.ToInt32(RoleCmb.SelectedValue)
+                };
+
+                // 2) Добавляем объект в таблицу
+                App.context.User.Add(RegistrationHelper.newUser);
+
+                // 3) Сохраняем изменения
+                App.context.SaveChanges();
+
+                // 4) Уведомить пользователя о добавлении новой записи
+                MessageBox.Show("Успешная регистрация", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Открываем окно для внесения дополнительной информации о пользователе
+                ProfileOrganizatorWindow profileOrganizatorWindow = new ProfileOrganizatorWindow();
+                profileOrganizatorWindow.Show();
+                Close();
+            }
+            catch
+            {
+                MessageBox.Show("Данные введены некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

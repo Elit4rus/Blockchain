@@ -35,6 +35,8 @@ namespace Blockchain.View.Windows
                 MessageBox.Show("Пользователь успешно авторизован");
                 SaveUserData();
                 Close();
+                ProfileOrganizatorWindow profileOrganizatorWindow = new ProfileOrganizatorWindow();
+                profileOrganizatorWindow.Show();
             }
             else
             {

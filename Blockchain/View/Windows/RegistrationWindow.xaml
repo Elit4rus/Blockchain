@@ -58,11 +58,12 @@
                   Grid.Row="6"
                   SelectionChanged="RoleCmb_SelectionChanged"/>
 
-        <Button Name="LoginBTN" 
+        <Button Name="RegistrationBtn" 
                 Grid.Row="8"
                 Content="Зарегистрироваться"
                 Grid.ColumnSpan="3"
-                Width="250"/>
+                Width="250"
+                Click="RegistrationBtn_Click"/>
 
         <Grid Grid.Row="10"
               VerticalAlignment="Bottom" 

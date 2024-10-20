@@ -9,8 +9,8 @@
         <EntityTypeShape EntityType="BlockchainModel.Country" Width="1.5" PointX="0.75" PointY="6.125" />
         <EntityTypeShape EntityType="BlockchainModel.Direction" Width="1.5" PointX="0.75" PointY="3.375" />
         <EntityTypeShape EntityType="BlockchainModel.Event" Width="1.5" PointX="3" PointY="6" />
-        <EntityTypeShape EntityType="BlockchainModel.Gender" Width="1.5" PointX="3.75" PointY="3.125" />
-        <EntityTypeShape EntityType="BlockchainModel.ModeratorEvent" Width="1.5" PointX="3.75" PointY="9.5" />
+        <EntityTypeShape EntityType="BlockchainModel.Gender" Width="1.5" PointX="3.75" PointY="9.5" />
+        <EntityTypeShape EntityType="BlockchainModel.ModeratorEvent" Width="1.5" PointX="3.75" PointY="3.125" />
         <EntityTypeShape EntityType="BlockchainModel.Role" Width="1.5" PointX="3.75" PointY="11.875" />
         <EntityTypeShape EntityType="BlockchainModel.User" Width="1.5" PointX="6" PointY="4.375" />
         <AssociationConnector Association="BlockchainModel.FK_Activity_Event" />
