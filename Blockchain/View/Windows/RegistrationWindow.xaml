@@ -8,8 +8,8 @@
             Title="Регистрация" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO" />
             <RowDefinition Height="20" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="40" />
             <RowDefinition Height="20" />
             <RowDefinition Height="40" />
@@ -19,7 +19,6 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="10" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -27,23 +26,27 @@
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
 
+        <TextBlock HorizontalAlignment="Center" 
+                   Text="Регистрация" 
+                   Grid.ColumnSpan="3"/>
+
         <TextBlock Grid.Row="2"
-       Text="Почта :"
-       VerticalAlignment="Center"
-       HorizontalAlignment="Center"/>
+                   Text="Почта :"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
 
         <TextBlock Grid.Row="4"
-       Text="Пароль :"
-       VerticalAlignment="Center"
-       HorizontalAlignment="Center"/>
+                   Text="Пароль :"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
 
-        <TextBox Name="EmailTb" 
-         Grid.Column="3" 
-         Grid.Row="2"/>
+        <TextBox Name="EmailTb"
+                 Grid.Column="3" 
+                 Grid.Row="2"/>
 
         <PasswordBox Name="PasswordPb" 
-             Grid.Column="3"
-             Grid.Row="4"/>
+                     Grid.Column="3"
+                     Grid.Row="4"/>
 
         <TextBlock Grid.Row="6"
                    Text="Роль :"
@@ -55,10 +58,32 @@
                   Grid.Row="6"
                   SelectionChanged="RoleCmb_SelectionChanged"/>
 
-        <Button  Name="LoginBTN" 
-         Grid.Column="3" 
-         Grid.Row="10"
-         Content="Зарегистрироваться"
-         />
+        <Button Name="LoginBTN" 
+                Grid.Row="8"
+                Content="Зарегистрироваться"
+                Grid.ColumnSpan="3"
+                Width="250"/>
+
+        <Grid Grid.Row="10"
+              VerticalAlignment="Bottom" 
+              Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Уже зарегистрированы?" 
+                       FontSize="18" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Row="2" 
+                       FontSize="18" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Top">
+                <Hyperlink Name="LoginHl" 
+                           Click="LoginHl_Click">
+                    Войти
+                </Hyperlink>
+            </TextBlock>
+        </Grid>
     </Grid>
 </Window>

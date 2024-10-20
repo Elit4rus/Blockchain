@@ -31,15 +31,27 @@ namespace Blockchain.View.Windows
         {
             if (AuthorizationHelper.CheckData(EmailTb.Text, PasswordPb.Password) == true)
             {
-                SaveUserData();
                 // успешная авторизация
                 MessageBox.Show("Пользователь успешно авторизован");
+                SaveUserData();
                 Close();
             }
             else
             {
-                // неуспешная авторизация
-                MessageBox.Show("Пользователь не найден");
+                if (BlockSystemHelper.IncreaseIncorrectInput() == 3)
+                {
+
+                    BlockWindow blockWindow = new BlockWindow();
+                    if (blockWindow.ShowDialog() == true)
+                    {
+                        BlockSystemHelper.incorrectInput = 0;
+                    }
+                }
+                else
+                {
+                    // неуспешная авторизация
+                    MessageBox.Show("Пользователь не найден");
+                }
             }
         }
         private void SaveUserData()
@@ -63,6 +75,13 @@ namespace Blockchain.View.Windows
         {
             EmailTb.Text = Properties.Settings.Default.EmailValue;
             PasswordPb.Password = Properties.Settings.Default.PasswordValue;
+        }
+
+        private void RegistrationHl_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+            Close();
         }
     }
 }

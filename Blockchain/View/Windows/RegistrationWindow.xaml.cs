@@ -32,5 +32,12 @@ namespace Blockchain.View.Windows
             int SelectedRole = Convert.ToInt32(RoleCmb.SelectedValue);
             RoleCmb.ItemsSource = App.context.Role.Where(r => r.ID == SelectedRole);
         }
+
+        private void LoginHl_Click(object sender, RoutedEventArgs e)
+        {
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+            authorizationWindow.Show();
+            Close();
+        }
     }
 }

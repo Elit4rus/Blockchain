@@ -12,44 +12,33 @@ namespace Blockchain.AppData
 {
     internal class AuthorizationHelper
     {
-        public static Jury currentJury;
-        public static Moderator currentModerator;
-        public static Organizer currentOrganizer;
-        public static Participant currentParticipant;
+        public static User currentUser;
         public static string captcha;
         public static bool CheckData(string email, string password)
         {
             // НАВИГАЦИЯ
             // Получаем одну запись по условиям по таблицам БД
-            currentJury = App.context.Jury.FirstOrDefault(u => u.Email == email && u.Password == password);
-            currentModerator = App.context.Moderator.FirstOrDefault(u => u.Email == email && u.Password == password);
-            currentOrganizer = App.context.Organizer.FirstOrDefault(u => u.Email == email && u.Password == password);
-            currentParticipant = App.context.Participant.FirstOrDefault(u => u.Email == email && u.Password == password);
+            currentUser = App.context.User.FirstOrDefault(u => u.Email == email && u.Password == password);
             // продолжение
-            if (currentJury != null || currentModerator != null || currentOrganizer != null || currentParticipant != null)
+            if (currentUser != null)
             {
                 // Генерируем капчу
                 if (GenerateCaptcha() == true)
                 {
                     // Загружаем страницы
-                    if (currentJury.RoleID != null)
+                    switch (currentUser.RoleID)
                     {
-
+                        case 1:
+                            // загрузка страницы
+                            OrganizatorWindow organizatorWindow = new OrganizatorWindow();
+                            organizatorWindow.Show();
+                            break;
+                        case 2:
+                            ProfileOrganizatorWindow profileOrganizator = new ProfileOrganizatorWindow();
+                            profileOrganizator.Show();
+                            break;
                     }
-                    else if (currentModerator.RoleID == 1)
-                    {
-                        AddEventWindow addEventWindow = new AddEventWindow();
-                        addEventWindow.Show();
-                    }
-                    else if (currentJury.RoleID == 2)
-                    {
-                        DetailedInfoOfTheEventWindow detailedInfoOfTheEventWindow = new DetailedInfoOfTheEventWindow();
-                        detailedInfoOfTheEventWindow.Show();
-                    }
-                    else
-                    { 
-                    
-                    }
+                    return true;
                 }
                 // Иначе, то...
                 else

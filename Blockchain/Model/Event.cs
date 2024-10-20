@@ -25,9 +25,11 @@ namespace Blockchain.Model
         public System.DateTime Date { get; set; }
         public int Days { get; set; }
         public int CountryID { get; set; }
+        public Nullable<int> DirectionID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activity> Activity { get; set; }
         public virtual Country Country { get; set; }
+        public virtual Direction Direction { get; set; }
     }
 }

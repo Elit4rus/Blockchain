@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blockchain"
         mc:Ignorable="d"
-        Title="Главное окно системы" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Главное окно системы" Height="650" Width="1100" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="5 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="5" />
             <RowDefinition Height="50" />
@@ -17,35 +17,35 @@
         <!-- Фильтрация -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="250" />
                 <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="160" />
             </Grid.ColumnDefinitions>
 
-            <ComboBox Name="DirectionsCmb" DisplayMemberPath="Name" SelectedValuePath=""/>
-            <DatePicker Grid.Column="2"/> 
-            <Button  Name="LoginBtn" Click="LoginBtn_Click"  Grid.Column="5" Content="Войти"/>
+            <ComboBox Name="DirectionCmb" DisplayMemberPath="Title" SelectedValuePath="Direction" SelectionChanged="DirectionCmb_SelectionChanged" Height="40"/>
+            <DatePicker Name="DateDp" Grid.Column="2" Height="40" FontSize="20" SelectedDateChanged="DateDp_SelectedDateChanged"/>
+            <Button  Name="LoginBtn" Click="LoginBtn_Click"  Grid.Column="5" Content="Войти" Height="40"/>
         </Grid>
 
         <!-- Таблица мероприятий -->
         <ListView Grid.Row="3" Name="EventsLv">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Лого" Width="100">
+                    <GridViewColumn Header="Лого">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding EventID}" Width="100"/>
+                                <Image Source="{Binding EventID}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <GridViewColumn Header="Название"
-                                DisplayMemberBinding="{Binding Event.Title}"/>
-                    <GridViewColumn Header="Направление"
                                 DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Направление"
+                                DisplayMemberBinding="{Binding Direction.Title}"/>
                     <GridViewColumn Header="Дата"
                                 DisplayMemberBinding="{Binding Date, StringFormat = dd.MM.yyy}"/>
                 </GridView>
